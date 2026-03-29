@@ -267,7 +267,7 @@ body.cursor-hidden * {
 /* --- Mode Badge --- */
 #mode-badge {
   position: fixed;
-  right: max(1rem, env(safe-area-inset-right, 1rem));
+  left: max(1rem, env(safe-area-inset-left, 1rem));
   bottom: max(1rem, env(safe-area-inset-bottom, 1rem));
   font-size: clamp(0.7rem, 1.5vw, 0.85rem);
   font-weight: 700;
