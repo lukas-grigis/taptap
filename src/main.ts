@@ -1,7 +1,7 @@
 import { loadState, getState, setStarted } from './state';
 import { initParentMenu, isMenuOpen } from './parent-menu';
 import { initCanvas, showResponse } from './visuals';
-import { speak, playPop, playChime, playWhoosh } from './audio';
+import { speak, playPop, playChime, playWhoosh, unlockAudio } from './audio';
 import { handleAlphabet } from './modes/alphabet';
 import { handleNumbers } from './modes/numbers';
 import { handleAnimals } from './modes/animals';
@@ -155,6 +155,7 @@ document.addEventListener('keydown', (e) => {
 
 // Touch input
 document.addEventListener('touchstart', (e) => {
+  unlockAudio();
   // Don't intercept parent zone touches
   const target = e.target as HTMLElement;
   if (target.closest('#parent-zone') || target.closest('#parent-menu')) return;
@@ -165,6 +166,7 @@ document.addEventListener('touchstart', (e) => {
 
 // Mouse input
 document.addEventListener('click', (e) => {
+  unlockAudio();
   const target = e.target as HTMLElement;
   if (target.closest('#parent-zone') || target.closest('#parent-menu')) return;
 

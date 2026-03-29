@@ -66,21 +66,47 @@ export function playChime(): void {
   }
 }
 
-export function playNote(freq: number): void {
+export function unlockAudio(): void {
+  if (audioCtx && audioCtx.state === 'suspended') {
+    audioCtx.resume();
+  }
+}
+
+export function playNote(freq: number, duration = 0.8): void {
   if (!getState().soundEnabled) return;
   try {
     const ctx = getAudioContext();
-    const osc = ctx.createOscillator();
+    const t = ctx.currentTime;
+
+    // Two oscillators for richness
+    const osc1 = ctx.createOscillator();
+    const osc2 = ctx.createOscillator();
     const gain = ctx.createGain();
-    osc.type = 'sine';
-    osc.frequency.setValueAtTime(freq, ctx.currentTime);
-    gain.gain.setValueAtTime(0.4, ctx.currentTime);
-    gain.gain.setValueAtTime(0.4, ctx.currentTime + 0.2);
-    gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.35);
-    osc.connect(gain);
+
+    osc1.type = 'triangle';
+    osc1.frequency.setValueAtTime(freq, t);
+
+    osc2.type = 'sine';
+    osc2.frequency.setValueAtTime(freq * 2, t); // one octave up
+
+    const gain2 = ctx.createGain();
+    gain2.gain.setValueAtTime(0.15, t);
+
+    // ADSR-style envelope
+    gain.gain.setValueAtTime(0, t);
+    gain.gain.linearRampToValueAtTime(0.45, t + 0.02);   // attack
+    gain.gain.setValueAtTime(0.35, t + 0.1);              // decay to sustain
+    gain.gain.exponentialRampToValueAtTime(0.001, t + duration); // release
+
+    osc1.connect(gain);
+    osc2.connect(gain2);
     gain.connect(ctx.destination);
-    osc.start(ctx.currentTime);
-    osc.stop(ctx.currentTime + 0.35);
+    gain2.connect(ctx.destination);
+
+    osc1.start(t);
+    osc1.stop(t + duration);
+    osc2.start(t);
+    osc2.stop(t + duration);
   } catch {
     // ignore
   }
