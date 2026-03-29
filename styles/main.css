@@ -183,6 +183,16 @@ body.cursor-hidden * {
   50% { opacity: 0.7; transform: scale(1.04); }
 }
 
+.landing-hint {
+  font-size: clamp(0.7rem, 2vw, 0.875rem);
+  font-weight: 600;
+  color: var(--text-secondary);
+  opacity: 0.6;
+  margin-top: 0.25rem;
+  position: relative;
+  z-index: 1;
+}
+
 .landing-icons {
   position: absolute;
   bottom: 8vh;
@@ -271,6 +281,38 @@ body.cursor-hidden * {
 }
 
 #mode-badge.visible {
+  opacity: 1;
+}
+
+/* --- Settings FAB --- */
+#menu-fab {
+  position: absolute;
+  bottom: max(1.5rem, env(safe-area-inset-bottom, 1.5rem));
+  right: max(1.5rem, env(safe-area-inset-right, 1.5rem));
+  z-index: 10;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,0.1);
+  background: var(--bg-glass);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  font-size: 1.4rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.5;
+  transition: opacity var(--duration-fast) var(--transition-smooth),
+              transform var(--duration-micro) var(--transition-smooth);
+}
+
+#menu-fab:hover {
+  opacity: 0.9;
+}
+
+#menu-fab:active {
+  transform: scale(0.9);
   opacity: 1;
 }
 

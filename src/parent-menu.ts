@@ -145,13 +145,14 @@ function syncMenuUI(): void {
   modeCounter.textContent = `${modeIndex + 1} of ${ALL_MODES.length}`;
 }
 
-function openMenu(): void {
+export function openMenu(): void {
   const menu = document.getElementById('parent-menu')!;
   menu.classList.remove('hidden', 'menu-exiting');
   // Force reflow so the entering transition plays from initial state
   void menu.offsetWidth;
   menu.classList.add('menu-entering');
   menuOpen = true;
+  document.getElementById('menu-fab')?.style.setProperty('display', 'none');
   syncMenuUI();
 
   // After entrance animation, switch to stable class
@@ -181,6 +182,7 @@ function closeMenu(): void {
     }
   }, 500);
   menuOpen = false;
+  document.getElementById('menu-fab')?.style.removeProperty('display');
 }
 
 export function isMenuOpen(): boolean {
