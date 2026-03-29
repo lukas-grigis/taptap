@@ -16,6 +16,12 @@ export function initParentMenu(): void {
   const exitBtn = document.getElementById('exit-fullscreen')!;
   const closeBtn = document.getElementById('menu-close-btn')!;
 
+  // Hide haptics toggle if vibration API not supported
+  const vibrationGroup = document.getElementById('vibration-group');
+  if (vibrationGroup && !('vibrate' in navigator)) {
+    vibrationGroup.style.display = 'none';
+  }
+
   // Apply saved theme at startup
   applyTheme(getState().theme);
 

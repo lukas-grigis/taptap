@@ -12,6 +12,8 @@
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://lukas-grigis.github.io/taptap/" />
     <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+    <link rel="manifest" href="./manifest.json" />
+    <meta name="mobile-web-app-capable" content="yes" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800;900&display=swap" rel="stylesheet" />
@@ -89,7 +91,7 @@
               <span id="sound-label" class="toggle-label">On</span>
             </div>
           </div>
-          <div class="menu-group">
+          <div class="menu-group" id="vibration-group">
             <label>Haptics</label>
             <div class="toggle-row">
               <label class="toggle-switch">
@@ -123,5 +125,12 @@
       </div>
     </div>
     <script type="module" src="./src/main.ts"></script>
+    <script>
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", () => {
+          navigator.serviceWorker.register("./sw.js").catch(() => {});
+        });
+      }
+    </script>
   </body>
 </html>
