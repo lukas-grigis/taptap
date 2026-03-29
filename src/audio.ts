@@ -2,10 +2,18 @@ import { getState } from './state';
 
 let audioCtx: AudioContext | null = null;
 
-function getAudioContext(): AudioContext {
+// Must be called synchronously inside a user gesture (touchstart/click)
+export function unlockAudio(): void {
   if (!audioCtx) {
     audioCtx = new (window.AudioContext || (window as any).webkitAudioContext)();
   }
+  if (audioCtx.state === 'suspended') {
+    audioCtx.resume();
+  }
+}
+
+function getAudioContext(): AudioContext | null {
+  if (!audioCtx) return null; // not yet unlocked
   if (audioCtx.state === 'suspended') {
     audioCtx.resume();
   }
@@ -28,7 +36,7 @@ export function speak(text: string): void {
 export function playPop(): void {
   if (!getState().soundEnabled) return;
   try {
-    const ctx = getAudioContext();
+    const ctx = getAudioContext(); if (!ctx) return;
     const osc = ctx.createOscillator();
     const gain = ctx.createGain();
     osc.type = 'sine';
@@ -48,7 +56,7 @@ export function playPop(): void {
 export function playChime(): void {
   if (!getState().soundEnabled) return;
   try {
-    const ctx = getAudioContext();
+    const ctx = getAudioContext(); if (!ctx) return;
     const osc = ctx.createOscillator();
     const gain = ctx.createGain();
     osc.type = 'triangle';
@@ -66,19 +74,10 @@ export function playChime(): void {
   }
 }
 
-export function unlockAudio(): void {
-  if (!audioCtx) {
-    audioCtx = new (window.AudioContext || (window as any).webkitAudioContext)();
-  }
-  if (audioCtx.state === 'suspended') {
-    audioCtx.resume();
-  }
-}
-
 export function playNote(freq: number, duration = 0.8): void {
   if (!getState().soundEnabled) return;
   try {
-    const ctx = getAudioContext();
+    const ctx = getAudioContext(); if (!ctx) return;
     const t = ctx.currentTime;
 
     // Two oscillators for richness
@@ -118,7 +117,7 @@ export function playNote(freq: number, duration = 0.8): void {
 export function playEngine(): void {
   if (!getState().soundEnabled) return;
   try {
-    const ctx = getAudioContext();
+    const ctx = getAudioContext(); if (!ctx) return;
     const osc = ctx.createOscillator();
     const gain = ctx.createGain();
     osc.type = 'sawtooth';
@@ -139,7 +138,7 @@ export function playEngine(): void {
 export function playWhoosh(): void {
   if (!getState().soundEnabled) return;
   try {
-    const ctx = getAudioContext();
+    const ctx = getAudioContext(); if (!ctx) return;
     const bufferSize = ctx.sampleRate * 0.3;
     const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
     const data = buffer.getChannelData(0);
