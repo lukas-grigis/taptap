@@ -124,7 +124,7 @@ export function showResponse(response: ModeResponse): void {
         stage.classList.remove('color-flood');
       }
     }, 500);
-  }, 3500);
+  }, 5000);
 }
 
 function burstParticles(x: number, y: number, color: string, count: number, confetti: boolean): void {

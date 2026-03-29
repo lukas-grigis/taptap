@@ -300,7 +300,7 @@ body.cursor-hidden * {
 }
 
 .fade-out {
-  animation: fade-out 0.5s var(--transition-exit) forwards;
+  animation: fade-out 0.8s var(--transition-exit) forwards;
 }
 
 .char-float {
