@@ -1,5 +1,5 @@
 import { loadState, getState, setStarted } from './state';
-import { initParentMenu, isMenuOpen } from './parent-menu';
+import { initParentMenu, isMenuOpen, openMenu } from './parent-menu';
 import { initCanvas, showResponse } from './visuals';
 import { speak, playPop, playChime, playWhoosh } from './audio';
 import { handleAlphabet } from './modes/alphabet';
@@ -188,3 +188,15 @@ resetCursorTimer();
 
 // Init parent menu
 initParentMenu();
+
+// Settings FAB
+const menuFab = document.getElementById('menu-fab')!;
+menuFab.addEventListener('click', (e) => {
+  e.stopPropagation();
+  openMenu();
+});
+menuFab.addEventListener('touchend', (e) => {
+  e.stopPropagation();
+  e.preventDefault();
+  openMenu();
+}, { passive: false });
