@@ -42,7 +42,7 @@ const MODE_LABELS: Record<string, string> = {
 let lastMode = '';
 let badgeTimeout: ReturnType<typeof setTimeout> | null = null;
 let cursorTimeout: ReturnType<typeof setTimeout> | null = null;
-let wakeLock: WakeLockSentinel | null = null;
+let wakeLock: { release: () => void; addEventListener: (e: string, cb: () => void) => void } | null = null;
 
 function vibrate(pattern: number | number[]): void {
   if (!getState().vibrationEnabled) return;
@@ -151,8 +151,8 @@ function dispatch(key?: string): void {
       break;
   }
 
-  showModeBadge();
   showResponse(response);
+  showModeBadge();
   vibrate(30);
   randomSoundEffect();
   if (response.speak) {

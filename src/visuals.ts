@@ -69,9 +69,6 @@ export function showResponse(response: ModeResponse): void {
     stage.classList.remove('color-flood');
   }
 
-  // FAB tinting
-
-
   // Main display
   if (response.isHTML) {
     display.innerHTML = response.display;
@@ -84,7 +81,15 @@ export function showResponse(response: ModeResponse): void {
   // Force reflow for animation restart
   display.className = '';
   void display.offsetWidth;
-  display.className = 'pop-in char-float';
+  display.className = 'pop-in';
+
+  // After pop-in completes, hand off to float animation
+  setTimeout(() => {
+    if (display.classList.contains('pop-in')) {
+      display.classList.remove('pop-in');
+      display.classList.add('char-float');
+    }
+  }, 420);
 
   // Sub display — slide in from below
   if (response.subDisplay) {

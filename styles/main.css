@@ -262,6 +262,7 @@ body.cursor-hidden * {
   text-align: center;
   max-width: 90vw;
   word-wrap: break-word;
+  overflow-wrap: anywhere;
 }
 
 /* --- Mode Badge --- */
@@ -292,7 +293,7 @@ body.cursor-hidden * {
 
 /* --- Display Animations --- */
 .pop-in {
-  animation: pop-in 0.4s var(--transition-spring) forwards;
+  animation: pop-in 0.4s var(--transition-spring);
 }
 
 .fade-in {
@@ -546,7 +547,12 @@ body.cursor-hidden * {
 }
 
 .mode-card.active {
-  background: color-mix(in srgb, var(--accent) 20%, transparent);
+  background: rgba(123, 97, 255, 0.2);
+  border-color: var(--accent);
+}
+
+[data-theme="high-contrast"] .mode-card.active {
+  background: rgba(255, 214, 10, 0.2);
   border-color: var(--accent);
 }
 
@@ -644,7 +650,13 @@ body.cursor-hidden * {
 }
 
 .theme-btn.active {
-  background: color-mix(in srgb, var(--accent) 20%, transparent);
+  background: rgba(123, 97, 255, 0.2);
+  border-color: var(--accent);
+  color: var(--text-primary);
+}
+
+[data-theme="high-contrast"] .theme-btn.active {
+  background: rgba(255, 214, 10, 0.2);
   border-color: var(--accent);
   color: var(--text-primary);
 }
@@ -715,7 +727,7 @@ select:focus {
 .shape-square { border-radius: 8px; }
 .shape-triangle { clip-path: polygon(50% 0%, 0% 100%, 100% 100%); }
 .shape-star { clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%); }
-.shape-heart { clip-path: polygon(50% 85%, 5% 40%, 0% 20%, 10% 0%, 30% 0%, 50% 20%, 70% 0%, 90% 0%, 100% 20%, 95% 40%); }
+.shape-heart { clip-path: polygon(50% 30%, 20% 0%, 0% 20%, 0% 45%, 50% 100%, 100% 45%, 100% 20%, 80% 0%); }
 .shape-diamond { clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%); }
 .shape-oval { clip-path: ellipse(50% 35%); }
 .shape-pentagon { clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%); }
@@ -759,6 +771,22 @@ select:focus {
 [data-theme="high-contrast"] #mode-badge {
   background: var(--bg-elevated);
   border: 1px solid var(--text-secondary);
+}
+
+[data-theme="high-contrast"] .menu-panel {
+  border-left: 2px solid var(--text-secondary);
+}
+
+[data-theme="high-contrast"] .mode-card {
+  border-color: var(--text-secondary);
+}
+
+[data-theme="high-contrast"] .toggle-slider {
+  background: var(--text-secondary);
+}
+
+[data-theme="high-contrast"] select {
+  border-color: var(--text-secondary);
 }
 
 /* --- Reduced Motion --- */

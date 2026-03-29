@@ -37,7 +37,8 @@ export function handleMusic(key?: string): ModeResponse {
   playNote(note.freq);
 
   return {
-    display: `🎵 ${note.name}`,
+    display: '🎵',
+    subDisplay: note.name,
     color: randomColor(),
     speak: note.name,
   };
