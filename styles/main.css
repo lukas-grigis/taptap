@@ -644,24 +644,29 @@ body.cursor-hidden * {
 }
 
 /* --- Language Select --- */
-.menu-panel select {
-  width: 100%;
-  appearance: auto;
-  background: var(--bg-glass);
+select {
+  background: var(--bg);
   color: var(--text-primary);
-  border: 1.5px solid transparent;
+  border: 1.5px solid var(--bg-glass);
   border-radius: var(--radius-md);
-  padding: 0.6rem 0.75rem;
+  padding: 0.5rem 0.75rem;
   font-family: inherit;
-  font-size: clamp(0.875rem, 2vw, 1rem);
+  font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
-  transition: border-color var(--duration-fast) var(--transition-smooth);
+  appearance: none;
+  -webkit-appearance: none;
+  width: 100%;
 }
 
-.menu-panel select:focus {
-  outline: none;
-  border-color: var(--accent);
+select:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.menu-panel button {
+  font-family: inherit;
+  cursor: pointer;
 }
 
 /* --- Exit Fullscreen Button --- */
@@ -721,6 +726,33 @@ body.cursor-hidden * {
 #exit-fullscreen,
 .menu-panel select {
   min-height: 48px;
+}
+
+/* --- Light Theme Landing Orbs --- */
+[data-theme="light"] .landing-bg::before {
+  background: radial-gradient(circle, #7B61FF, transparent 70%);
+  opacity: 0.12;
+}
+
+[data-theme="light"] .landing-bg::after {
+  background: radial-gradient(circle, #FF6B6B, transparent 70%);
+  opacity: 0.1;
+}
+
+/* --- High Contrast Overrides --- */
+[data-theme="high-contrast"] * {
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+[data-theme="high-contrast"] .landing-cta {
+  border-color: var(--text-primary);
+  background: var(--bg);
+}
+
+[data-theme="high-contrast"] #mode-badge {
+  background: var(--bg-elevated);
+  border: 1px solid var(--text-secondary);
 }
 
 /* --- Reduced Motion --- */
