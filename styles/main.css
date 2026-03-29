@@ -289,39 +289,6 @@ body.cursor-hidden * {
   opacity: 1;
 }
 
-/* --- Settings FAB --- */
-#menu-fab {
-  position: absolute;
-  bottom: max(1.5rem, env(safe-area-inset-bottom, 1.5rem));
-  right: max(1.5rem, env(safe-area-inset-right, 1.5rem));
-  z-index: 10;
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  border: 1.5px solid rgba(255,255,255,0.12);
-  background: var(--bg-elevated);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  font-size: 1.4rem;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 0.5;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.4), 0 0 0 0 var(--accent);
-  transition: opacity var(--duration-fast) var(--transition-smooth),
-              transform var(--duration-micro) var(--transition-spring),
-              box-shadow var(--duration-standard) var(--transition-smooth);
-}
-
-#menu-fab:hover {
-  opacity: 1;
-  box-shadow: 0 2px 16px rgba(0,0,0,0.5), 0 0 12px 2px rgba(123,97,255,0.3);
-}
-
-#menu-fab:active {
-  transform: scale(0.88);
-}
 
 /* --- Display Animations --- */
 .pop-in {

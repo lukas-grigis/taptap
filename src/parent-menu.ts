@@ -155,7 +155,6 @@ export function openMenu(): void {
   void menu.offsetWidth;
   menu.classList.add('menu-entering');
   menuOpen = true;
-  document.getElementById('menu-fab')?.style.setProperty('display', 'none');
   syncMenuUI();
 
   // After entrance animation, switch to stable class
@@ -185,11 +184,6 @@ function closeMenu(): void {
     }
   }, 500);
   menuOpen = false;
-  const fab = document.getElementById('menu-fab');
-  if (fab) {
-    fab.style.removeProperty('display');
-    fab.style.opacity = '1';
-  }
 }
 
 export function isMenuOpen(): boolean {
