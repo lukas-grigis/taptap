@@ -42,6 +42,16 @@ const MODE_LABELS: Record<string, string> = {
 let lastMode = '';
 let badgeTimeout: ReturnType<typeof setTimeout> | null = null;
 let cursorTimeout: ReturnType<typeof setTimeout> | null = null;
+let fabHideTimer: ReturnType<typeof setTimeout> | null = null;
+const menuFab = document.getElementById('menu-fab')!;
+
+function scheduleFabHide(): void {
+  if (fabHideTimer) clearTimeout(fabHideTimer);
+  menuFab.style.opacity = '1';
+  fabHideTimer = setTimeout(() => {
+    menuFab.style.opacity = '0.15';
+  }, 4000);
+}
 
 function showModeBadge(): void {
   const state = getState();
@@ -134,6 +144,7 @@ function dispatch(key?: string): void {
   if (response.speak) {
     speak(response.speak);
   }
+  scheduleFabHide();
 }
 
 // Keyboard input
@@ -183,14 +194,16 @@ function resetCursorTimer(): void {
   }, 3000);
 }
 
-document.addEventListener('mousemove', resetCursorTimer);
+document.addEventListener('mousemove', () => {
+  resetCursorTimer();
+  menuFab.style.opacity = '1';
+});
 resetCursorTimer();
 
 // Init parent menu
 initParentMenu();
 
 // Settings FAB
-const menuFab = document.getElementById('menu-fab')!;
 menuFab.addEventListener('click', (e) => {
   e.stopPropagation();
   openMenu();

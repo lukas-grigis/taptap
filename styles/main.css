@@ -187,8 +187,13 @@ body.cursor-hidden * {
   font-size: clamp(0.7rem, 2vw, 0.875rem);
   font-weight: 600;
   color: var(--text-secondary);
-  opacity: 0.6;
-  margin-top: 0.25rem;
+  opacity: 0.7;
+  margin-top: 0.5rem;
+  padding: 0.35em 0.9em;
+  background: var(--bg-glass);
+  border-radius: 100px;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
   position: relative;
   z-index: 1;
 }
@@ -293,8 +298,8 @@ body.cursor-hidden * {
   width: 48px;
   height: 48px;
   border-radius: 50%;
-  border: 1px solid rgba(255,255,255,0.1);
-  background: var(--bg-glass);
+  border: 1.5px solid rgba(255,255,255,0.12);
+  background: var(--bg-elevated);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   font-size: 1.4rem;
@@ -303,17 +308,19 @@ body.cursor-hidden * {
   align-items: center;
   justify-content: center;
   opacity: 0.5;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.4), 0 0 0 0 var(--accent);
   transition: opacity var(--duration-fast) var(--transition-smooth),
-              transform var(--duration-micro) var(--transition-smooth);
+              transform var(--duration-micro) var(--transition-spring),
+              box-shadow var(--duration-standard) var(--transition-smooth);
 }
 
 #menu-fab:hover {
-  opacity: 0.9;
+  opacity: 1;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.5), 0 0 12px 2px rgba(123,97,255,0.3);
 }
 
 #menu-fab:active {
-  transform: scale(0.9);
-  opacity: 1;
+  transform: scale(0.88);
 }
 
 /* --- Display Animations --- */
@@ -362,6 +369,53 @@ body.cursor-hidden * {
   height: 100px;
   z-index: 10;
   cursor: default;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#hold-indicator {
+  position: relative;
+  width: 44px;
+  height: 44px;
+  opacity: 0;
+  transition: opacity 150ms ease;
+}
+
+#parent-zone:active #hold-indicator,
+#parent-zone.holding #hold-indicator {
+  opacity: 1;
+}
+
+.hold-icon {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+}
+
+.hold-ring-bg {
+  fill: none;
+  stroke: rgba(255,255,255,0.15);
+  stroke-width: 3;
+}
+
+.hold-ring {
+  fill: none;
+  stroke: white;
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-dasharray: 113;
+  stroke-dashoffset: 113;
+  transform-origin: 22px 22px;
+  transform: rotate(-90deg);
+  transition: stroke-dashoffset 3000ms linear;
+}
+
+#parent-zone.holding .hold-ring {
+  stroke-dashoffset: 0;
 }
 
 /* --- Parent Menu --- */
