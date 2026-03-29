@@ -1,0 +1,14 @@
+{
+  "name": "TapTap — Toddler Learning Toy",
+  "short_name": "TapTap",
+  "description": "A free, fullscreen learning toy for toddlers",
+  "start_url": "/taptap/",
+  "scope": "/taptap/",
+  "display": "fullscreen",
+  "orientation": "any",
+  "background_color": "#0d0d0f",
+  "theme_color": "#7B61FF",
+  "icons": [
+    { "src": "favicon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }
+  ]
+}
