@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover" />
+    <meta name="description" content="A free, fullscreen learning toy for toddlers. Tap anywhere to learn letters, numbers, animals, and more!" />
+    <meta name="theme-color" content="#0d0d0f" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta property="og:title" content="TapTap — Toddler Learning Toy" />
+    <meta property="og:description" content="A free, fullscreen learning toy for toddlers. Tap anywhere to learn letters, numbers, animals, and more!" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://lukas-grigis.github.io/taptap/" />
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800;900&display=swap" rel="stylesheet" />
+    <title>TapTap — Toddler Learning Toy</title>
+    <link rel="stylesheet" href="./styles/main.css" />
+  </head>
+  <body>
+    <div id="app">
+      <div id="landing">
+        <div class="landing-bg">
+          <div class="landing-icons">
+            <span>🔤</span><span>🔢</span><span>🐾</span><span>🎨</span>
+            <span>🔷</span><span>🎵</span><span>🚗</span><span>🍎</span>
+            <span>🌤️</span><span>😊</span><span>🤚</span><span>🎲</span>
+          </div>
+        </div>
+        <h1 class="landing-title">TapTap</h1>
+        <p class="landing-subtitle">Learn letters, numbers, animals, colors & more!</p>
+        <p class="landing-cta">Tap anywhere to start</p>
+      </div>
+
+      <div id="stage" class="hidden">
+        <canvas id="particles"></canvas>
+        <div id="display"></div>
+        <div id="sub-display"></div>
+        <div id="mode-badge"></div>
+      </div>
+
+      <div id="parent-zone"></div>
+
+      <div id="parent-menu" class="hidden">
+        <div class="menu-backdrop"></div>
+        <div class="menu-panel">
+          <div class="menu-header">
+            <h2>Parent Settings</h2>
+            <div>
+              <span id="mode-counter" class="menu-counter"></span>
+              <button class="menu-close" id="menu-close-btn" aria-label="Close menu">&times;</button>
+            </div>
+          </div>
+          <div class="menu-group">
+            <label>Mode</label>
+            <div class="menu-modes">
+              <button data-mode="alphabet" class="mode-card active"><span class="mode-icon">🔤</span><span class="mode-name">Alphabet</span></button>
+              <button data-mode="numbers" class="mode-card"><span class="mode-icon">🔢</span><span class="mode-name">Numbers</span></button>
+              <button data-mode="animals" class="mode-card"><span class="mode-icon">🐾</span><span class="mode-name">Animals</span></button>
+              <button data-mode="colors" class="mode-card"><span class="mode-icon">🎨</span><span class="mode-name">Colors</span></button>
+              <button data-mode="shapes" class="mode-card"><span class="mode-icon">🔷</span><span class="mode-name">Shapes</span></button>
+              <button data-mode="music" class="mode-card"><span class="mode-icon">🎵</span><span class="mode-name">Music</span></button>
+              <button data-mode="vehicles" class="mode-card"><span class="mode-icon">🚗</span><span class="mode-name">Vehicles</span></button>
+              <button data-mode="food" class="mode-card"><span class="mode-icon">🍎</span><span class="mode-name">Food</span></button>
+              <button data-mode="weather" class="mode-card"><span class="mode-icon">🌤️</span><span class="mode-name">Weather</span></button>
+              <button data-mode="emotions" class="mode-card"><span class="mode-icon">😊</span><span class="mode-name">Emotions</span></button>
+              <button data-mode="bodyparts" class="mode-card"><span class="mode-icon">🤚</span><span class="mode-name">Body Parts</span></button>
+              <button data-mode="freeplay" class="mode-card"><span class="mode-icon">🎲</span><span class="mode-name">Free Play</span></button>
+            </div>
+          </div>
+          <div class="menu-group">
+            <label>Sound</label>
+            <div class="toggle-row">
+              <label class="toggle-switch">
+                <input type="checkbox" id="sound-toggle" checked />
+                <span class="toggle-slider"></span>
+              </label>
+              <span id="sound-label" class="toggle-label">On</span>
+            </div>
+          </div>
+          <div class="menu-group">
+            <label>Theme</label>
+            <div class="theme-options">
+              <button data-theme="dark" class="theme-btn active">Dark</button>
+              <button data-theme="light" class="theme-btn">Light</button>
+              <button data-theme="high-contrast" class="theme-btn">High Contrast</button>
+            </div>
+          </div>
+          <div class="menu-group">
+            <label>Language</label>
+            <select id="lang-select">
+              <option value="en-US">English</option>
+              <option value="de-DE">Deutsch</option>
+            </select>
+          </div>
+          <div class="menu-group">
+            <button id="exit-fullscreen">Exit Fullscreen</button>
+          </div>
+          <p class="menu-about">TapTap v1.0 — A toddler learning toy</p>
+        </div>
+      </div>
+    </div>
+    <script type="module" src="./src/main.ts"></script>
+  </body>
+</html>
