@@ -4,7 +4,7 @@ let audioCtx: AudioContext | null = null;
 
 function getAudioContext(): AudioContext {
   if (!audioCtx) {
-    audioCtx = new AudioContext();
+    audioCtx = new (window.AudioContext || (window as any).webkitAudioContext)();
   }
   if (audioCtx.state === 'suspended') {
     audioCtx.resume();
@@ -67,7 +67,10 @@ export function playChime(): void {
 }
 
 export function unlockAudio(): void {
-  if (audioCtx && audioCtx.state === 'suspended') {
+  if (!audioCtx) {
+    audioCtx = new (window.AudioContext || (window as any).webkitAudioContext)();
+  }
+  if (audioCtx.state === 'suspended') {
     audioCtx.resume();
   }
 }
