@@ -7,6 +7,7 @@ export interface AppState {
   soundEnabled: boolean;
   language: string;
   theme: Theme;
+  vibrationEnabled: boolean;
   started: boolean;
 }
 

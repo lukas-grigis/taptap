@@ -7,6 +7,7 @@ const defaults: AppState = {
   soundEnabled: true,
   language: 'en-US',
   theme: 'dark',
+  vibrationEnabled: true,
   started: false,
 };
 
@@ -51,6 +52,11 @@ export function setSound(enabled: boolean): void {
 
 export function setLanguage(lang: string): void {
   state.language = lang;
+  persist();
+}
+
+export function setVibration(enabled: boolean): void {
+  state.vibrationEnabled = enabled;
   persist();
 }
 

@@ -42,11 +42,33 @@ const MODE_LABELS: Record<string, string> = {
 let lastMode = '';
 let badgeTimeout: ReturnType<typeof setTimeout> | null = null;
 let cursorTimeout: ReturnType<typeof setTimeout> | null = null;
+let wakeLock: WakeLockSentinel | null = null;
+
+function vibrate(pattern: number | number[]): void {
+  if (!getState().vibrationEnabled) return;
+  if ('vibrate' in navigator) {
+    navigator.vibrate(pattern);
+  }
+}
+
+async function requestWakeLock(): Promise<void> {
+  if ('wakeLock' in navigator) {
+    try {
+      wakeLock = await (navigator as any).wakeLock.request('screen');
+      wakeLock!.addEventListener('release', () => { wakeLock = null; });
+    } catch { /* ignore */ }
+  }
+}
+
+document.addEventListener('visibilitychange', () => {
+  if (document.visibilityState === 'visible') requestWakeLock();
+});
 
 function showModeBadge(): void {
   const state = getState();
   if (state.mode !== lastMode) {
     lastMode = state.mode;
+    vibrate([50, 30, 50]);
     modeBadge.textContent = MODE_LABELS[state.mode] || state.mode;
     modeBadge.classList.remove('visible');
     void modeBadge.offsetWidth;
@@ -75,6 +97,7 @@ function start(): void {
   landing.classList.add('hidden');
   stage.classList.remove('hidden');
   initCanvas();
+  requestWakeLock();
   enterFullscreen();
   showModeBadge();
 }
@@ -130,6 +153,7 @@ function dispatch(key?: string): void {
 
   showModeBadge();
   showResponse(response);
+  vibrate(30);
   randomSoundEffect();
   if (response.speak) {
     speak(response.speak);

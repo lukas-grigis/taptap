@@ -1,4 +1,4 @@
-import { getState, setMode, setSound, setLanguage, setTheme } from './state';
+import { getState, setMode, setSound, setVibration, setLanguage, setTheme } from './state';
 import { Mode, Theme } from './types';
 
 const ALL_MODES: Mode[] = ['alphabet', 'numbers', 'animals', 'colors', 'shapes', 'music', 'vehicles', 'food', 'weather', 'emotions', 'bodyparts', 'freeplay'];
@@ -11,6 +11,7 @@ export function initParentMenu(): void {
   const menu = document.getElementById('parent-menu')!;
   const backdrop = menu.querySelector('.menu-backdrop')!;
   const soundToggle = document.getElementById('sound-toggle') as HTMLInputElement;
+  const vibrationToggle = document.getElementById('vibration-toggle') as HTMLInputElement;
   const langSelect = document.getElementById('lang-select') as HTMLSelectElement;
   const exitBtn = document.getElementById('exit-fullscreen')!;
   const closeBtn = document.getElementById('menu-close-btn')!;
@@ -61,6 +62,13 @@ export function initParentMenu(): void {
   soundToggle.addEventListener('change', (e) => {
     e.stopPropagation();
     setSound(soundToggle.checked);
+    syncMenuUI();
+  });
+
+  // Vibration toggle
+  vibrationToggle.addEventListener('change', (e) => {
+    e.stopPropagation();
+    setVibration(vibrationToggle.checked);
     syncMenuUI();
   });
 
@@ -121,6 +129,8 @@ function syncMenuUI(): void {
   const menu = document.getElementById('parent-menu')!;
   const soundToggle = document.getElementById('sound-toggle') as HTMLInputElement;
   const soundLabel = document.getElementById('sound-label')!;
+  const vibrationToggle = document.getElementById('vibration-toggle') as HTMLInputElement;
+  const vibrationLabel = document.getElementById('vibration-label')!;
   const langSelect = document.getElementById('lang-select') as HTMLSelectElement;
   const modeCounter = document.getElementById('mode-counter')!;
 
@@ -133,6 +143,10 @@ function syncMenuUI(): void {
   // Sound (checkbox toggle)
   soundToggle.checked = state.soundEnabled;
   soundLabel.textContent = state.soundEnabled ? 'On' : 'Off';
+
+  // Vibration toggle
+  vibrationToggle.checked = state.vibrationEnabled;
+  vibrationLabel.textContent = state.vibrationEnabled ? 'On' : 'Off';
 
   // Theme buttons
   menu.querySelectorAll('[data-theme]').forEach((btn) => {
