@@ -25,9 +25,11 @@ export function initParentMenu(): void {
   const startHold = (e: Event) => {
     e.preventDefault();
     e.stopPropagation();
+    parentZone.classList.add('holding');
     holdTimer = setTimeout(() => {
+      parentZone.classList.remove('holding');
       openMenu();
-    }, 2000);
+    }, 3000);
   };
 
   const cancelHold = () => {
@@ -35,6 +37,7 @@ export function initParentMenu(): void {
       clearTimeout(holdTimer);
       holdTimer = null;
     }
+    parentZone.classList.remove('holding');
   };
 
   parentZone.addEventListener('mousedown', startHold);
@@ -182,7 +185,11 @@ function closeMenu(): void {
     }
   }, 500);
   menuOpen = false;
-  document.getElementById('menu-fab')?.style.removeProperty('display');
+  const fab = document.getElementById('menu-fab');
+  if (fab) {
+    fab.style.removeProperty('display');
+    fab.style.opacity = '1';
+  }
 }
 
 export function isMenuOpen(): boolean {

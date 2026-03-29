@@ -69,6 +69,15 @@ export function showResponse(response: ModeResponse): void {
     stage.classList.remove('color-flood');
   }
 
+  // FAB tinting
+  const fab = document.getElementById("menu-fab");
+  if (fab && response.screenColor) {
+    fab.style.setProperty("--fab-tint", response.screenColor);
+    fab.style.background = `color-mix(in srgb, ${response.screenColor} 40%, var(--bg-elevated))`;
+  } else if (fab) {
+    fab.style.background = "";
+  }
+
   // Main display
   if (response.isHTML) {
     display.innerHTML = response.display;
@@ -121,7 +130,7 @@ export function showResponse(response: ModeResponse): void {
         stage.classList.remove('color-flood');
       }
     }, 500);
-  }, 2000);
+  }, 3500);
 }
 
 function burstParticles(x: number, y: number, color: string, count: number, confetti: boolean): void {
