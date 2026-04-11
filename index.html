@@ -11,8 +11,9 @@
     <meta property="og:description" content="A free, fullscreen learning toy for toddlers. Tap anywhere to learn letters, numbers, animals, and more!" />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://lukas-grigis.github.io/taptap/" />
+    <link rel="icon" href="./favicon.ico" sizes="any" />
     <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
-    <link rel="manifest" href="./manifest.json" />
+    <link rel="apple-touch-icon" href="./apple-touch-icon-180x180.png" />
     <meta name="mobile-web-app-capable" content="yes" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -125,12 +126,6 @@
       </div>
     </div>
     <script type="module" src="./src/main.ts"></script>
-    <script>
-      if ("serviceWorker" in navigator) {
-        window.addEventListener("load", () => {
-          navigator.serviceWorker.register("./sw.js").catch(() => {});
-        });
-      }
-    </script>
+
   </body>
 </html>
