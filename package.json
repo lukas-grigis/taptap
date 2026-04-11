@@ -9,7 +9,15 @@
     "type": "git",
     "url": "https://github.com/lukas-grigis/taptap.git"
   },
-  "keywords": ["toddler", "kids", "learning", "educational", "toy", "pwa", "typescript"],
+  "keywords": [
+    "toddler",
+    "kids",
+    "learning",
+    "educational",
+    "toy",
+    "pwa",
+    "typescript"
+  ],
   "license": "MIT",
   "author": "Lukas Grigis",
   "scripts": {
@@ -19,6 +27,7 @@
   },
   "devDependencies": {
     "typescript": "^6.0.2",
-    "vite": "^8.0.3"
+    "vite": "^8.0.3",
+    "vite-plugin-pwa": "^1.2.0"
   }
 }
