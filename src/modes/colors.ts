@@ -9,7 +9,7 @@ const COLORS: Array<{ hex: string; en: string; de: string; text: string }> = [
   { hex: '#0088FF', en: 'Blue', de: 'Blau', text: '#FFFFFF' },
   { hex: '#8B00FF', en: 'Purple', de: 'Lila', text: '#FFFFFF' },
   { hex: '#FF69B4', en: 'Pink', de: 'Rosa', text: '#FFFFFF' },
-  { hex: '#FFFFFF', en: 'White', de: 'Weiß', text: '#333333' },
+  { hex: '#FFFFFF', en: 'White', de: 'Weiss', text: '#333333' },
   { hex: '#8B4513', en: 'Brown', de: 'Braun', text: '#FFFFFF' },
   { hex: '#00CED1', en: 'Turquoise', de: 'Türkis', text: '#FFFFFF' },
 ];

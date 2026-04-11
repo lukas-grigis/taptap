@@ -16,6 +16,16 @@ const VEHICLES: Array<{ emoji: string; en: string; de: string }> = [
   { emoji: '🛸', en: 'UFO', de: 'UFO' },
   { emoji: '🚌', en: 'Bus', de: 'Bus' },
   { emoji: '🏎️', en: 'Race Car', de: 'Rennwagen' },
+  { emoji: '🚒', en: 'Fire Truck', de: 'Feuerwehrauto' },
+  { emoji: '🚑', en: 'Ambulance', de: 'Krankenwagen' },
+  { emoji: '🚓', en: 'Police Car', de: 'Polizeiauto' },
+  { emoji: '🛳️', en: 'Cruise Ship', de: 'Kreuzfahrtschiff' },
+  { emoji: '🚡', en: 'Cable Car', de: 'Seilbahn' },
+  { emoji: '🛺', en: 'Tuk Tuk', de: 'Tuk Tuk' },
+  { emoji: '⛵', en: 'Sailboat', de: 'Segelboot' },
+  { emoji: '🛵', en: 'Scooter', de: 'Roller' },
+  { emoji: '🚛', en: 'Truck', de: 'Lastwagen' },
+  { emoji: '🏗️', en: 'Crane', de: 'Kran' },
 ];
 
 export function handleVehicles(): ModeResponse {
