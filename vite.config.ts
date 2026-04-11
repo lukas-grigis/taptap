@@ -6,6 +6,8 @@ export default defineConfig({
   plugins: [
     VitePWA({
       registerType: 'autoUpdate',
+      injectRegister: 'auto',
+      selfDestroying: false,
       manifest: {
         name: 'TapTap — Toddler Learning Toy',
         short_name: 'TapTap',
@@ -42,6 +44,7 @@ export default defineConfig({
       },
       workbox: {
         globPatterns: ['**/*.{js,css,html,ico,png,svg,woff2}'],
+        cleanupOutdatedCaches: true,
       },
     }),
   ],

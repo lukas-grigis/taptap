@@ -12,7 +12,7 @@ let particles: Particle[] = [];
 let animFrameId = 0;
 let isFirstTap = true;
 let clearTimerId: ReturnType<typeof setTimeout> | null = null;
-let floatTimerId: ReturnType<typeof setTimeout> | null = null;
+let clearInnerTimerId: ReturnType<typeof setTimeout> | null = null;
 
 type ParticleShape = 'circle' | 'star' | 'square';
 
@@ -64,7 +64,7 @@ export function showResponse(response: ModeResponse): void {
 
   // Cancel any pending timers from previous taps
   if (clearTimerId) { clearTimeout(clearTimerId); clearTimerId = null; }
-  if (floatTimerId) { clearTimeout(floatTimerId); floatTimerId = null; }
+  if (clearInnerTimerId) { clearTimeout(clearInnerTimerId); clearInnerTimerId = null; }
 
   // Reset screen color
   if (response.screenColor) {
@@ -89,15 +89,6 @@ export function showResponse(response: ModeResponse): void {
   void display.offsetWidth;
   display.className = 'pop-in';
 
-  // After pop-in completes, hand off to float animation
-  floatTimerId = setTimeout(() => {
-    floatTimerId = null;
-    if (display.classList.contains('pop-in')) {
-      display.classList.remove('pop-in');
-      display.classList.add('char-float');
-    }
-  }, 420);
-
   // Sub display — slide in from below
   if (response.subDisplay) {
     subDisplay.textContent = response.subDisplay;
@@ -120,12 +111,13 @@ export function showResponse(response: ModeResponse): void {
     burstParticles(cx, cy, response.color, 40, false);
   }
 
-  // Clear after 4 seconds
+  // Clear after 2 seconds
   clearTimerId = setTimeout(() => {
     clearTimerId = null;
     display.classList.add('fade-out');
     subDisplay.classList.add('fade-out');
-    setTimeout(() => {
+    clearInnerTimerId = setTimeout(() => {
+      clearInnerTimerId = null;
       if (display.classList.contains('fade-out')) {
         display.textContent = '';
         display.innerHTML = '';
@@ -136,8 +128,8 @@ export function showResponse(response: ModeResponse): void {
         stage.style.backgroundColor = '';
         stage.classList.remove('color-flood');
       }
-    }, 500);
-  }, 4000);
+    }, 900);
+  }, 2000);
 }
 
 function burstParticles(x: number, y: number, color: string, count: number, confetti: boolean): void {
