@@ -12,6 +12,12 @@ const WEATHER = [
   { emoji: '🌤️', en: 'Sunny', de: 'Sonnig', bg: '#100d00', color: '#F9E79F' },
   { emoji: '🌊', en: 'Wave', de: 'Welle', bg: '#001a1a', color: '#1ABC9C' },
   { emoji: '🌫️', en: 'Fog', de: 'Nebel', bg: '#111113', color: '#b0b0b8' },
+  { emoji: '🌙', en: 'Moon', de: 'Mond', bg: '#0a0a1a', color: '#F5E6CA' },
+  { emoji: '⚡', en: 'Lightning', de: 'Blitz', bg: '#0d0d1a', color: '#F9E71C' },
+  { emoji: '🌦️', en: 'Drizzle', de: 'Nieselregen', bg: '#0d1520', color: '#87CEEB' },
+  { emoji: '🌬️', en: 'Wind', de: 'Wind', bg: '#101418', color: '#B0C4DE' },
+  { emoji: '☃️', en: 'Snowman', de: 'Schneemann', bg: '#0d1a2a', color: '#E8F0FE' },
+  { emoji: '🌅', en: 'Sunset', de: 'Sonnenuntergang', bg: '#1a0d00', color: '#FF8C42' },
 ];
 
 export function handleWeather(): ModeResponse {

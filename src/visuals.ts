@@ -11,6 +11,8 @@ let ctx: CanvasRenderingContext2D | null = null;
 let particles: Particle[] = [];
 let animFrameId = 0;
 let isFirstTap = true;
+let clearTimerId: ReturnType<typeof setTimeout> | null = null;
+let floatTimerId: ReturnType<typeof setTimeout> | null = null;
 
 type ParticleShape = 'circle' | 'star' | 'square';
 
@@ -60,6 +62,10 @@ export function showResponse(response: ModeResponse): void {
   const subDisplay = document.getElementById('sub-display')!;
   const stage = document.getElementById('stage')!;
 
+  // Cancel any pending timers from previous taps
+  if (clearTimerId) { clearTimeout(clearTimerId); clearTimerId = null; }
+  if (floatTimerId) { clearTimeout(floatTimerId); floatTimerId = null; }
+
   // Reset screen color
   if (response.screenColor) {
     stage.style.backgroundColor = response.screenColor;
@@ -84,7 +90,8 @@ export function showResponse(response: ModeResponse): void {
   display.className = 'pop-in';
 
   // After pop-in completes, hand off to float animation
-  setTimeout(() => {
+  floatTimerId = setTimeout(() => {
+    floatTimerId = null;
     if (display.classList.contains('pop-in')) {
       display.classList.remove('pop-in');
       display.classList.add('char-float');
@@ -113,8 +120,9 @@ export function showResponse(response: ModeResponse): void {
     burstParticles(cx, cy, response.color, 40, false);
   }
 
-  // Clear after 2 seconds
-  setTimeout(() => {
+  // Clear after 4 seconds
+  clearTimerId = setTimeout(() => {
+    clearTimerId = null;
     display.classList.add('fade-out');
     subDisplay.classList.add('fade-out');
     setTimeout(() => {

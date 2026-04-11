@@ -17,6 +17,19 @@ const FOODS: Array<{ emoji: string; en: string; de: string; bgColor: string; tex
   { emoji: '🌽', en: 'Corn', de: 'Mais', bgColor: '#DAA520', textColor: '#333333' },
   { emoji: '🥦', en: 'Broccoli', de: 'Brokkoli', bgColor: '#228B22', textColor: '#FFFFFF' },
   { emoji: '🍔', en: 'Hamburger', de: 'Hamburger', bgColor: '#8B4513', textColor: '#FFFFFF' },
+  { emoji: '🍰', en: 'Cake', de: 'Kuchen', bgColor: '#FFB6C1', textColor: '#333333' },
+  { emoji: '🍪', en: 'Cookie', de: 'Keks', bgColor: '#C8A165', textColor: '#333333' },
+  { emoji: '🍫', en: 'Chocolate', de: 'Schokolade', bgColor: '#5C3317', textColor: '#FFFFFF' },
+  { emoji: '🍿', en: 'Popcorn', de: 'Popcorn', bgColor: '#FFFACD', textColor: '#333333' },
+  { emoji: '🧇', en: 'Waffle', de: 'Waffel', bgColor: '#D4A843', textColor: '#333333' },
+  { emoji: '🥞', en: 'Pancake', de: 'Pfannkuchen', bgColor: '#C8A256', textColor: '#333333' },
+  { emoji: '🍣', en: 'Sushi', de: 'Sushi', bgColor: '#E85D4A', textColor: '#FFFFFF' },
+  { emoji: '🥐', en: 'Croissant', de: 'Croissant', bgColor: '#D4A843', textColor: '#333333' },
+  { emoji: '🍋', en: 'Lemon', de: 'Zitrone', bgColor: '#FFF44F', textColor: '#333333' },
+  { emoji: '🫐', en: 'Blueberry', de: 'Blaubeere', bgColor: '#4169E1', textColor: '#FFFFFF' },
+  { emoji: '🥝', en: 'Kiwi', de: 'Kiwi', bgColor: '#6B8E23', textColor: '#FFFFFF' },
+  { emoji: '🍑', en: 'Peach', de: 'Pfirsich', bgColor: '#FFAA80', textColor: '#333333' },
+  { emoji: '🥜', en: 'Peanut', de: 'Erdnuss', bgColor: '#C4A35A', textColor: '#333333' },
 ];
 
 export function handleFood(): ModeResponse {
