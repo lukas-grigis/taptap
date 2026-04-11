@@ -62,9 +62,11 @@ export function showResponse(response: ModeResponse): void {
   const subDisplay = document.getElementById('sub-display')!;
   const stage = document.getElementById('stage')!;
 
-  // Cancel any pending timers from previous taps
+  // Cancel any pending timers from previous taps and reset both elements immediately
   if (clearTimerId) { clearTimeout(clearTimerId); clearTimerId = null; }
   if (clearInnerTimerId) { clearTimeout(clearInnerTimerId); clearInnerTimerId = null; }
+  subDisplay.className = '';
+  display.className = '';
 
   // Reset screen color
   if (response.screenColor) {
@@ -89,13 +91,11 @@ export function showResponse(response: ModeResponse): void {
   void display.offsetWidth;
   display.className = 'pop-in';
 
-  // Sub display — slide in from below
+  // Sub display — appears instantly in sync with main display (no stagger)
   if (response.subDisplay) {
     subDisplay.textContent = response.subDisplay;
     subDisplay.style.color = response.color;
-    subDisplay.className = '';
-    void subDisplay.offsetWidth;
-    subDisplay.className = 'fade-in';
+    subDisplay.className = 'visible';
   } else {
     subDisplay.textContent = '';
     subDisplay.className = '';
