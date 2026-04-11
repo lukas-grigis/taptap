@@ -293,11 +293,12 @@ body.cursor-hidden * {
 
 /* --- Display Animations --- */
 .pop-in {
-  animation: pop-in 0.4s var(--transition-spring);
+  animation: pop-in 0.4s var(--transition-spring) forwards;
 }
 
-.fade-in {
-  animation: slide-up 0.35s var(--transition-spring) forwards;
+/* subDisplay appears instantly — no stagger vs main display */
+.visible {
+  opacity: 1;
 }
 
 .fade-out {
@@ -307,11 +308,6 @@ body.cursor-hidden * {
 @keyframes pop-in {
   0% { transform: scale(0); opacity: 0; }
   100% { transform: scale(1); opacity: 1; }
-}
-
-@keyframes slide-up {
-  from { transform: translateY(20px); opacity: 0; }
-  to { transform: translateY(0); opacity: 1; }
 }
 
 @keyframes fade-out {
@@ -788,7 +784,6 @@ select:focus {
   .landing-title,
   .landing-cta,
   .pop-in,
-  .fade-in,
   .fade-out {
     animation: none !important;
   }
